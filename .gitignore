@@ -1,0 +1,14 @@
+target/
+.env
+*.log
+.idea/
+.vscode/
+
+__pycache__/
+*.pyc
+
+!docs/evidence/*.log
+
+.agents/
+.codex/
+.aws/

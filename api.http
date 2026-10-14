@@ -1,0 +1,34 @@
+# 使用支持 .http 的 IDE 插件发送请求；先根据创建响应修改 id
+@baseUrl = http://localhost:8080
+@username = admin
+@password = demo-password
+@id = 1
+
+### 健康检查
+GET {{baseUrl}}/actuator/health
+
+### 创建工单
+POST {{baseUrl}}/api/tickets
+Authorization: Basic {{username}} {{password}}
+Content-Type: application/json
+
+{"title":"支付失败","description":"同一订单重复扣款","category":"PAYMENT","priority":"HIGH"}
+
+### 查询列表
+GET {{baseUrl}}/api/tickets?status=OPEN&size=5
+Authorization: Basic {{username}} {{password}}
+
+### 查询详情
+GET {{baseUrl}}/api/tickets/{{id}}
+Authorization: Basic {{username}} {{password}}
+
+### 接单，请使用当前版本号
+POST {{baseUrl}}/api/tickets/{{id}}/transitions
+Authorization: Basic {{username}} {{password}}
+Content-Type: application/json
+
+{"target":"IN_PROGRESS","version":0,"note":"开始核查支付流水"}
+
+### 审计记录
+GET {{baseUrl}}/api/tickets/{{id}}/events
+Authorization: Basic {{username}} {{password}}

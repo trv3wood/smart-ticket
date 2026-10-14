@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:ticket}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: ${DB_USER:ticket}
+    password: ${DB_PASSWORD}
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      timeout: 500ms
+      connect-timeout: 500ms
+app:
+  security:
+    password: ${APP_PASSWORD}

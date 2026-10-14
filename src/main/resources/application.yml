@@ -1,0 +1,25 @@
+server:
+  port: ${PORT:8080}
+spring:
+  application:
+    name: smart-ticket
+  profiles:
+    default: demo
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized
+app:
+  security:
+    username: ${APP_USER:admin}
+    password: ${APP_PASSWORD:demo-password}

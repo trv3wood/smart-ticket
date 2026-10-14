@@ -1,0 +1,6 @@
+Table	Op	Msg_type	Msg_text
+ticket.ticket	analyze	status	OK
+EXPLAIN
+-> Limit/Offset: 20/90000 row(s)  (cost=5794 rows=0) (actual time=97.2..97.2 rows=20 loops=1)\n    -> Index lookup on ticket using idx_ticket_status_id (status='OPEN') (reverse)  (cost=5794 rows=49522) (actual time=0.0426..95.1 rows=90020 loops=1)\n
+EXPLAIN
+-> Limit: 20 row(s)  (cost=4133 rows=20) (actual time=0.0301..0.0417 rows=20 loops=1)\n    -> Filter: ((ticket.`status` = 'OPEN') and (ticket.id < <cache>((@`cursor`))))  (cost=4133 rows=20622) (actual time=0.029..0.0395 rows=20 loops=1)\n        -> Index range scan on ticket using PRIMARY over (id < 10008) (reverse)  (cost=4133 rows=20622) (actual time=0.0202..0.0283 rows=20 loops=1)\n
